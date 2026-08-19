@@ -13,10 +13,10 @@ const useTemperatureConverter = () => {
       return;
     }
 
-    const temperature = new TemperatureVO(Number(celsiusValue), 'CELSIUS');
-    const result = manager.convert(temperature, 'FAHRENHEIT');
+    const celsiustemperature = new TemperatureVO(Number(celsiusValue), 'CELSIUS');
+    const fahrenheittemperature = manager.convert(celsiustemperature, 'FAHRENHEIT');
 
-    setFahrenheitValue(result.value.toString());
+    setFahrenheitValue(fahrenheittemperature.value.toString());
   };
 
   return {

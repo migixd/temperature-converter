@@ -2,8 +2,12 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Button, Text, TextInput } from 'react-native-paper';
+import useTemperatureConverter from '../hooks/useTemperatureConverter';
 
 const TemperatureScreen = () => {
+  const { celsiusValue, setCelsiusValue, fahrenheitValue, convertTemperature } =
+    useTemperatureConverter();
+
   return (
     <SafeAreaView style={styles.container}>
       <Text variant="headlineMedium" style={styles.title}>
@@ -17,19 +21,26 @@ const TemperatureScreen = () => {
         keyboardType="numeric"
         inputMode="decimal"
         theme={{ colors: { primary: '#77F2DC' } }}
+        value={celsiusValue}
+        onChangeText={setCelsiusValue}
       />
       <Text style={styles.label}>Grados Fahrenheit:</Text>
       <TextInput
         id="fahrenheitResult"
         mode="flat"
-        value=""
+        value={fahrenheitValue}
         editable={false}
         selectTextOnFocus={false}
         style={styles.input}
       />
 
       <View style={styles.buttonWrapper}>
-        <Button id="convertButton" mode="contained" style={styles.button}>
+        <Button
+          id="convertButton"
+          mode="contained"
+          style={styles.button}
+          onPress={convertTemperature}
+        >
           CONVERTIR
         </Button>
       </View>
